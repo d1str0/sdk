@@ -1033,7 +1033,17 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="n">template</span> <span class="o">=</span> <span class="k">await</span> <span class="n">template_service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">request</span><span class="o">=</span><span class="n">CreateCredentialTemplateRequest</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;An Example Credential&quot;</span><span class="p">,</span>
+        <span class="n">allow_additional_fields</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fields</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;firstName&quot;</span><span class="p">:</span> <span class="n">TemplateField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Given name&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;lastName&quot;</span><span class="p">:</span> <span class="n">TemplateField</span><span class="p">(),</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">TemplateField</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">FieldType</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
