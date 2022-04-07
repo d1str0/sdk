@@ -1344,7 +1344,7 @@ provide are evidenced in the code snippets below:</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="n">protectedProfile</span> <span class="o">=</span> <span class="n">accountService</span><span class="p">.</span><span class="na">protect</span><span class="p">(</span><span class="n">accountProfile</span><span class="p">,</span> <span class="s">&quot;1234&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="n">protectedProfile</span> <span class="o">=</span> <span class="n">AccountService</span><span class="p">.</span><span class="na">protect</span><span class="p">(</span><span class="n">accountProfile</span><span class="p">,</span> <span class="s">&quot;1234&quot;</span><span class="p">);</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1368,7 +1368,7 @@ email or SMS as the <code>securityCode</code> argument.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">account_profile</span> <span class="o">=</span> <span class="n">account_service</span><span class="o">.</span><span class="n">protect</span><span class="p">(</span><span class="n">protected_profile</span><span class="p">,</span> <span class="s2">&quot;1234&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="n">account_profile</span> <span class="o">=</span> <span class="n">account_service</span><span class="o">.</span><span class="n">unprotect</span><span class="p">(</span><span class="n">protected_profile</span><span class="p">,</span> <span class="s2">&quot;1234&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1376,7 +1376,7 @@ email or SMS as the <code>securityCode</code> argument.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="n">accountProfile</span> <span class="o">=</span> <span class="n">accountService</span><span class="p">.</span><span class="na">unprotect</span><span class="p">(</span><span class="n">protectedProfile</span><span class="p">,</span> <span class="s">&quot;1234&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="n">accountProfile</span> <span class="o">=</span> <span class="n">AccountService</span><span class="p">.</span><span class="na">unprotect</span><span class="p">(</span><span class="n">protectedProfile</span><span class="p">,</span> <span class="s">&quot;1234&quot;</span><span class="p">);</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">

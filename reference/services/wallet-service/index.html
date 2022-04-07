@@ -785,26 +785,6 @@
     Create Wallet
   </a>
   
-    <nav class="md-nav" aria-label="Create Wallet">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-wallet-directly" class="md-nav__link">
-    Create wallet directly
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-wallet-with-provider-invitation" class="md-nav__link">
-    Create wallet with provider invitation
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1047,26 +1027,6 @@
     Create Wallet
   </a>
   
-    <nav class="md-nav" aria-label="Create Wallet">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-wallet-directly" class="md-nav__link">
-    Create wallet directly
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-wallet-with-provider-invitation" class="md-nav__link">
-    Create wallet with provider invitation
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1139,75 +1099,31 @@
 <h1 id="wallet-service">Wallet Service<a class="headerlink" href="#wallet-service" title="Permanent link">&para;</a></h1>
 <p>The wallet service is the main interface for interacting with a cloud wallet. The service endpoints are designed to closely match the recommendations of the <a href="https://w3c-ccg.github.io/universal-wallet-interop-spec/" target="_blank">Universal Wallet 2020 <small><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg></span><small></a> specification by W3C Community Credentials Group. The service exposes a gRPC interface and a set of data contracts as described in the specification. Our intention with this design is to bring it closer to interoperability as more implementations of this wallet appear in production.</p>
 <h2 id="create-wallet">Create Wallet<a class="headerlink" href="#create-wallet" title="Permanent link">&para;</a></h2>
-<p>Wallets can be created directly by the user or through an invitation by the ecosystem provider. Depending on the ecosystem settings, direct wallet creation may not be enabled for your provider.</p>
-<h3 id="create-wallet-directly">Create wallet directly<a class="headerlink" href="#create-wallet-directly" title="Permanent link">&para;</a></h3>
-<p>To create a wallet directly without an invitation, use the following methods. These methods return secure profile data that should be stored in a safe place. The profile is used to authenticate the wallet service with the cloud provider. Read more details and recommendations in the <a href="/reference/#authorization">Security Profiles</a> page.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Trinsic CLI</label><label for="__tabbed_1_2">TypeScript</label><label for="__tabbed_1_3">C#</label><label for="__tabbed_1_4">Python</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>trinsic wallet create --name &lt;profile_name&gt;
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">profile</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">createWallet</span><span class="p">();</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">Create</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">profile</span> <span class="o">=</span> <span class="k">await</span> <span class="n">wallet_service</span><span class="o">.</span><span class="n">create_wallet</span><span class="p">()</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="create-wallet-with-provider-invitation">Create wallet with provider invitation<a class="headerlink" href="#create-wallet-with-provider-invitation" title="Permanent link">&para;</a></h3>
-<p>If invited by a provider, you can supply the security code found in your invitation (via email, SMS, etc). Read more about <a href="/reference/services/provider-service/#invite-participants">inviting participants</a> to your ecosystem as provider.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Trinsic CLI</label><label for="__tabbed_2_2">TypeScript</label><label for="__tabbed_2_3">C#</label><label for="__tabbed_2_4">Python</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>trinsic wallet create --name &lt;profile&gt; --security-code &lt;code&gt;
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">profile</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">createWallet</span><span class="p">(</span><span class="s2">&quot;&lt;security code&gt;&quot;</span><span class="p">);</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="s">&quot;&lt;security code&gt;&quot;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">profile</span> <span class="o">=</span> <span class="k">await</span> <span class="n">wallet_service</span><span class="o">.</span><span class="n">create_wallet</span><span class="p">(</span><span class="s2">&quot;&lt;security code&gt;&quot;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
+<p>Wallets can be created directly by the user or through an invitation by the ecosystem provider. Depending on the ecosystem settings, direct wallet creation may not be enabled for your provider. The wallet is created automatically upon user signin.</p>
 <h2 id="insert-item">Insert Item<a class="headerlink" href="#insert-item" title="Permanent link">&para;</a></h2>
 <p>This method allows inserting any JSON data in the wallet.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Trinsic CLI</label><label for="__tabbed_3_2">TypeScript</label><label for="__tabbed_3_3">C#</label><label for="__tabbed_3_4">Python</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Trinsic CLI</label><label for="__tabbed_1_2">TypeScript</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>trinsic wallet insert-item --item &lt;INPUT_JSON_FILE&gt;
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">itemId</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">insertItem</span><span class="p">({</span>
-    <span class="s2">&quot;foo&quot;</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span>
-<span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">insertItemResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">insertItem</span><span class="p">(</span><span class="ow">new</span> <span class="nx">InsertItemRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setItemJson</span><span class="p">(</span><span class="nx">issueResponse</span><span class="p">.</span><span class="nx">getSignedDocumentJson</span><span class="p">()));</span>
 </code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">C#</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
-
-<span class="kt">var</span><span class="w"> </span><span class="n">itemId</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">InsertItem</span><span class="p">(</span><span class="n">item</span><span class="p">);</span><span class="w"></span>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">insertItemResponse</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">InsertItemAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">ItemJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">credentialJson</span><span class="p">.</span><span class="n">DocumentJson</span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
 </div>
-<div class="tabbed-block">
+</div>
 <div class="highlight"><pre><span></span><code><span class="n">item_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">wallet_service</span><span class="o">.</span><span class="n">insert_item</span><span class="p">(</span><span class="n">credential</span><span class="p">)</span>
 </code></pre></div>
 </div>
@@ -1229,11 +1145,19 @@ This apporach allows us to give developers full control over how data is retriev
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">Search</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">search</span><span class="p">();</span>
+
+<span class="err">⋯</span>
+
+<span class="kd">let</span> <span class="nx">items2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="ow">new</span> <span class="nx">SearchRequest</span><span class="p">().</span><span class="nx">setQuery</span><span class="p">(</span><span class="s2">&quot;SELECT c.id, c.type, c.data FROM c WHERE c.type = &#39;VerifiableCredential&#39;&quot;</span><span class="p">));</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">Search</span><span class="p">();</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">walletItems</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">SearchAsync</span><span class="p">(</span><span class="k">new</span><span class="p">());</span><span class="w"></span>
+
+<span class="err">⋯</span><span class="w"></span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">walletItems2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">SearchAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">Query</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;SELECT c.id, c.type, c.data FROM c WHERE c.type = &#39;VerifiableCredential&#39;&quot;</span><span class="p">})</span><span class="w"></span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1252,13 +1176,11 @@ This apporach allows us to give developers full control over how data is retriev
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM c WHERE c.type = &#39;VerifiableCredential&#39;&quot;</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">items2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="ow">new</span> <span class="nx">SearchRequest</span><span class="p">().</span><span class="nx">setQuery</span><span class="p">(</span><span class="s2">&quot;SELECT c.id, c.type, c.data FROM c WHERE c.type = &#39;VerifiableCredential&#39;&quot;</span><span class="p">));</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">Search</span><span class="p">(</span><span class="s">&quot;SELECT * FROM c WHERE c.type = &#39;VerifiableCredential&#39;&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">walletItems2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">walletService</span><span class="p">.</span><span class="n">SearchAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">Query</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;SELECT c.id, c.type, c.data FROM c WHERE c.type = &#39;VerifiableCredential&#39;&quot;</span><span class="p">})</span><span class="w"></span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1292,7 +1214,7 @@ Examples and detailed description on working with grouped results <a href="https
   
     <div class="md-source-date">
       <small>
-          Authors: <span class='git-page-authors git-authors'><a href='mailto:michaeldavisboyd@gmail.com'>Michael Boyd</a></span>
+          Authors: <span class='git-page-authors git-authors'><a href='mailto:polygonguru@gmail.com'>Scott Phillips</a>, <a href='mailto:michaeldavisboyd@gmail.com'>Michael Boyd</a></span>
       </small>
     </div>
   

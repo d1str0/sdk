@@ -1117,38 +1117,38 @@
 <blockquote>
 <p>This endpoint requires that the user provide a valid JSON-LD document.</p>
 </blockquote>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Trinsic CLI</label><label for="__tabbed_1_2">TypeScript</label><label for="__tabbed_1_3">C#</label><label for="__tabbed_1_4">Python</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Trinsic CLI</label><label for="__tabbed_1_2">TypeScript</label><label for="__tabbed_1_3">C#</label><label for="__tabbed_1_4">Python</label><label for="__tabbed_1_5">Go</label><label for="__tabbed_1_6">Java</label><label for="__tabbed_1_7">Ruby</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>trinsic issuer issue --document &lt;INPUT_JSONLD_FILE&gt; --out &lt;OUTPUT_FILE&gt;
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">unsignedDocument</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;@context&quot;</span><span class="o">:</span> <span class="s2">&quot;https://w3id.org/security/v2&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;https://issuer.oidp.uscis.gov/credentials/83627465&quot;</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">signedDocument</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">issue</span><span class="p">(</span><span class="nx">unsignedDocument</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Sign a credential as the clinic and send it to Allison</span>
+<span class="kd">const</span> <span class="nx">credentialJson</span> <span class="o">=</span> <span class="nx">getVaccineCertUnsignedJSON</span><span class="p">()</span>
+<span class="kd">const</span> <span class="nx">credential</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">issueCredential</span><span class="p">(</span><span class="ow">new</span> <span class="nx">IssueRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setDocumentJson</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">credentialJson</span><span class="p">)));</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">unsignedDocument</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;@context&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://w3id.org/security/v2&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://issuer.oidp.uscis.gov/credentials/83627465&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
-
-<span class="kt">var</span><span class="w"> </span><span class="n">signedDocument</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialService</span><span class="p">.</span><span class="n">IssueCredential</span><span class="p">(</span><span class="n">unsignedDocument</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">credential</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialsService</span><span class="p">.</span><span class="n">IssueCredentialAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">DocumentJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">credentialJson</span><span class="p">});</span><span class="w"></span>
+<span class="n">_testOutputHelper</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Credential:\n{credential.SignedDocumentJson}&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
-<span class="n">credential_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
-  <span class="p">{</span> <span class="s2">&quot;@context&quot;</span><span class="p">,</span> <span class="s2">&quot;https://w3id.org/security/v2&quot;</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;https://issuer.oidp.uscis.gov/credentials/83627465&quot;</span> <span class="p">}</span>
-<span class="p">})</span>
-<span class="n">credential</span> <span class="o">=</span> <span class="k">await</span> <span class="n">credential_service</span><span class="o">.</span><span class="n">issue_credential</span><span class="p">(</span><span class="n">credential_json</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 </div>
 </div>
@@ -1162,11 +1162,156 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="nx">test</span> <span class="kr">from</span> <span class="s2">&quot;ava&quot;</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span><span class="nx">AccountService</span><span class="p">,</span> <span class="nx">CredentialService</span><span class="p">,</span> <span class="nx">WalletService</span><span class="p">,</span> <span class="nx">TemplateService</span><span class="p">,</span> <span class="nx">CreateCredentialTemplateRequest</span><span class="p">,</span> <span class="nx">TemplateField</span><span class="p">,</span> <span class="nx">FieldType</span><span class="p">,</span> <span class="nx">AccountProfile</span><span class="p">,</span> <span class="nx">IssueFromTemplateRequest</span><span class="p">,</span> <span class="nx">SignInRequest</span><span class="p">,</span> <span class="nx">InsertItemRequest</span><span class="p">,</span> <span class="nx">CreateProofRequest</span><span class="p">,</span> <span class="nx">VerifyProofRequest</span><span class="p">}</span> <span class="kr">from</span> <span class="s2">&quot;../src&quot;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">getTemplateCertFrameJSON</span><span class="p">,</span> <span class="nx">getTestServerOptions</span><span class="p">,</span> <span class="nx">getVaccineCertFrameJSON</span><span class="p">,</span> <span class="nx">getVaccineCertUnsignedJSON</span><span class="p">}</span> <span class="kr">from</span> <span class="s2">&quot;./TestData&quot;</span><span class="p">;</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="s2">&quot;dotenv&quot;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">getTestServerOptions</span><span class="p">();</span>
+
+<span class="c1">// defineTemplate() {</span>
+<span class="kd">var</span> <span class="nx">credentialTemplateName</span> <span class="o">=</span> <span class="s2">&quot;My First Credential Template&quot;</span><span class="p">;</span>
+<span class="kd">var</span>  <span class="nx">nameField</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">TemplateField</span><span class="p">();</span>
+<span class="nx">nameField</span><span class="p">.</span><span class="nx">setType</span><span class="p">(</span><span class="nx">FieldType</span><span class="p">.</span><span class="nx">STRING</span><span class="p">);</span>
+<span class="nx">nameField</span><span class="p">.</span><span class="nx">setDescription</span><span class="p">(</span><span class="s2">&quot;The name of the person&quot;</span><span class="p">);</span>
+<span class="nx">nameField</span><span class="p">.</span><span class="nx">setOptional</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="kd">var</span>  <span class="nx">numberOfBags</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">TemplateField</span><span class="p">();</span>
+<span class="nx">numberOfBags</span><span class="p">.</span><span class="nx">setType</span><span class="p">(</span><span class="nx">FieldType</span><span class="p">.</span><span class="nx">NUMBER</span><span class="p">);</span>
+<span class="nx">numberOfBags</span><span class="p">.</span><span class="nx">setDescription</span><span class="p">(</span><span class="s2">&quot;The number of bags the person is taking on the trip&quot;</span><span class="p">);</span>
+<span class="nx">numberOfBags</span><span class="p">.</span><span class="nx">setOptional</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="kd">var</span>  <span class="nx">dateOfBirth</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">TemplateField</span><span class="p">();</span>
+<span class="nx">dateOfBirth</span><span class="p">.</span><span class="nx">setType</span><span class="p">(</span><span class="nx">FieldType</span><span class="p">.</span><span class="nx">DATETIME</span><span class="p">);</span>
+<span class="nx">dateOfBirth</span><span class="p">.</span><span class="nx">setDescription</span><span class="p">(</span><span class="s2">&quot;The date of birth of the person&quot;</span><span class="p">);</span>
+<span class="nx">dateOfBirth</span><span class="p">.</span><span class="nx">setOptional</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="kd">var</span>  <span class="nx">isVaccinated</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">TemplateField</span><span class="p">();</span>
+<span class="nx">isVaccinated</span><span class="p">.</span><span class="nx">setType</span><span class="p">(</span><span class="nx">FieldType</span><span class="p">.</span><span class="nx">BOOL</span><span class="p">);</span>
+<span class="nx">isVaccinated</span><span class="p">.</span><span class="nx">setDescription</span><span class="p">(</span><span class="s2">&quot;Whether or not the person has been vaccinated&quot;</span><span class="p">);</span>
+<span class="nx">isVaccinated</span><span class="p">.</span><span class="nx">setOptional</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="c1">// }</span>
+
+<span class="kd">let</span> <span class="nx">issuer</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">AccountProfile</span><span class="p">();</span>
+
+<span class="nx">test</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="k">async</span> <span class="nx">t</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">service</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">AccountService</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">service</span><span class="p">.</span><span class="nx">signIn</span><span class="p">(</span><span class="ow">new</span> <span class="nx">SignInRequest</span><span class="p">());</span>
+
+  <span class="nx">issuer</span><span class="p">.</span><span class="nx">setAuthToken</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">createCredentialTemplateTest</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// createTemplate() {</span>
+  <span class="kd">const</span> <span class="nx">templateService</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">TemplateService</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+  <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">CreateCredentialTemplateRequest</span><span class="p">();</span>
+  <span class="nx">request</span><span class="p">.</span><span class="nx">setName</span><span class="p">(</span><span class="nx">credentialTemplateName</span><span class="p">);</span> 
+
+  <span class="nx">request</span><span class="p">.</span><span class="nx">getFieldsMap</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nx">nameField</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;numberOfBags&quot;</span><span class="p">,</span> <span class="nx">numberOfBags</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;dateOfBirth&quot;</span><span class="p">,</span> <span class="nx">dateOfBirth</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;vaccinated&quot;</span><span class="p">,</span> <span class="nx">isVaccinated</span><span class="p">);</span>
+
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">templateService</span><span class="p">.</span><span class="nx">createCredentialTemplate</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
+  <span class="c1">// }</span>
+
+  <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">issueCredentialFromTemplate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">templateResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">createCredentialTemplateTest</span><span class="p">();</span>
+
+  <span class="kd">let</span> <span class="nx">service</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">CredentialService</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+  <span class="c1">// issueFromTemplate() {}</span>
+  <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">IssueFromTemplateRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setTemplateId</span><span class="p">(</span><span class="nx">templateResponse</span><span class="o">?</span><span class="p">.</span><span class="nx">getData</span><span class="p">()</span><span class="o">?</span><span class="p">.</span><span class="nx">getId</span><span class="p">()</span> <span class="o">??</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setValuesJson</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;numberOfBags&quot;</span><span class="o">:</span> <span class="mf">2</span><span class="p">,</span>
+      <span class="s2">&quot;dateOfBirth&quot;</span><span class="o">:</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">).</span><span class="nx">toISOString</span><span class="p">(),</span>
+      <span class="s2">&quot;vaccinated&quot;</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}));</span>
+
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">service</span><span class="p">.</span><span class="nx">issueFromTemplate</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
+  <span class="c1">// }</span>
+
+  <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">verifyCredential</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">credentialService</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">CredentialService</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">accountService</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">AccountService</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">walletService</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">WalletService</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">allison</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">accountService</span><span class="p">.</span><span class="nx">signIn</span><span class="p">(</span><span class="ow">new</span> <span class="nx">SignInRequest</span><span class="p">());</span>
+  <span class="kd">const</span> <span class="nx">airline</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">accountService</span><span class="p">.</span><span class="nx">signIn</span><span class="p">(</span><span class="ow">new</span> <span class="nx">SignInRequest</span><span class="p">());</span>
+
+  <span class="kd">const</span> <span class="nx">credential</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">issueCredentialFromTemplate</span><span class="p">();</span>
+
+  <span class="nx">walletService</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">setAuthToken</span><span class="p">(</span><span class="nx">allison</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">insertItemResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">walletService</span><span class="p">.</span><span class="nx">insertItem</span><span class="p">(</span><span class="ow">new</span> <span class="nx">InsertItemRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setItemJson</span><span class="p">(</span><span class="nx">credential</span><span class="p">.</span><span class="nx">getDocumentJson</span><span class="p">()));</span>
+
+
+  <span class="nx">credentialService</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">setAuthToken</span><span class="p">(</span><span class="nx">allison</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">proofRequestJson</span> <span class="o">=</span> <span class="nx">getTemplateCertFrameJSON</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">proofRequest</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">CreateProofRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setItemId</span><span class="p">(</span><span class="nx">insertItemResponse</span><span class="p">.</span><span class="nx">getItemId</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">setDocumentJson</span><span class="p">(</span><span class="nx">proofRequestJson</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">proof</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">createProof</span><span class="p">(</span><span class="nx">proofRequest</span><span class="p">);</span>
+
+  <span class="nx">credentialService</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">setAuthToken</span><span class="p">(</span><span class="nx">airline</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">verifyProofRequest</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">VerifyProofRequest</span><span class="p">().</span><span class="nx">setProofDocumentJson</span><span class="p">(</span><span class="nx">proof</span><span class="p">.</span><span class="nx">getProofDocumentJson</span><span class="p">())</span>
+  <span class="kd">const</span> <span class="nx">verifyProofResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">verifyProof</span><span class="p">(</span><span class="nx">verifyProofRequest</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">verifyProofResponse</span><span class="p">.</span><span class="nx">getIsValid</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Create Credential Template&quot;</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">createCredentialTemplateTest</span><span class="p">();</span>
+
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">getData</span><span class="p">()</span><span class="o">?</span><span class="p">.</span><span class="nx">getName</span><span class="p">(),</span> <span class="nx">credentialTemplateName</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">fieldsMap</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">getData</span><span class="p">()</span><span class="o">?</span><span class="p">.</span><span class="nx">getFieldsMap</span><span class="p">();</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span><span class="nx">fieldsMap</span><span class="o">?</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">toObject</span><span class="p">(),</span> <span class="nx">nameField</span><span class="p">.</span><span class="nx">toObject</span><span class="p">());</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span><span class="nx">fieldsMap</span><span class="o">?</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;numberOfBags&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">toObject</span><span class="p">(),</span> <span class="nx">numberOfBags</span><span class="p">.</span><span class="nx">toObject</span><span class="p">());</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span><span class="nx">fieldsMap</span><span class="o">?</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;dateOfBirth&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">toObject</span><span class="p">(),</span> <span class="nx">dateOfBirth</span><span class="p">.</span><span class="nx">toObject</span><span class="p">());</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span><span class="nx">fieldsMap</span><span class="o">?</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;vaccinated&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">toObject</span><span class="p">(),</span> <span class="nx">isVaccinated</span><span class="p">.</span><span class="nx">toObject</span><span class="p">());</span>
+
+  <span class="nx">t</span><span class="p">.</span><span class="nx">pass</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Issue Credential From Template&quot;</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">((</span><span class="k">await</span> <span class="nx">issueCredentialFromTemplate</span><span class="p">()).</span><span class="nx">getDocumentJson</span><span class="p">());</span>
+
+  <span class="nx">t</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">response</span><span class="o">?</span><span class="p">.</span><span class="nx">issuer</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">response</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">response</span><span class="o">?</span><span class="p">.</span><span class="nx">credentialSubject</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">);</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">response</span><span class="o">?</span><span class="p">.</span><span class="nx">credentialSubject</span><span class="o">?</span><span class="p">.</span><span class="nx">numberOfBags</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">response</span><span class="o">?</span><span class="p">.</span><span class="nx">credentialSubject</span><span class="o">?</span><span class="p">.</span><span class="nx">dateOfBirth</span><span class="p">).</span><span class="nx">toISOString</span><span class="p">(),</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">).</span><span class="nx">toISOString</span><span class="p">());</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">response</span><span class="o">?</span><span class="p">.</span><span class="nx">credentialSubject</span><span class="o">?</span><span class="p">.</span><span class="nx">vaccinated</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="nx">t</span><span class="p">.</span><span class="nx">pass</span><span class="p">();</span>
+<span class="p">})</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Verify Credential Issued from Template&quot;</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">verifyCredential</span><span class="p">();</span>
+
+  <span class="nx">t</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+
+  <span class="nx">t</span><span class="p">.</span><span class="nx">pass</span><span class="p">();</span>
+<span class="p">})</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">credentialJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialService</span><span class="p">.</span><span class="n">IssueFromTemplateAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">TemplateId</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">template</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ValuesJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1267,27 +1412,16 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">frame</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;@context&quot;</span><span class="o">:</span> <span class="s2">&quot;https://www.w3.org/2018/credentials/v1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;VerifiableCredential&quot;</span> <span class="p">],</span>
-    <span class="s2">&quot;@explicit&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">&quot;issuer&quot;</span><span class="o">:</span> <span class="p">{}</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">itemId</span> <span class="o">=</span> <span class="s2">&quot;&lt;item document id&gt;&quot;</span><span class="p">;</span>
-
-<span class="kd">let</span> <span class="nx">signedDocument</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">createProof</span><span class="p">(</span><span class="nx">itemId</span><span class="p">,</span> <span class="nx">frame</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">proof</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">createProof</span><span class="p">(</span><span class="ow">new</span> <span class="nx">CreateProofRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setItemId</span><span class="p">(</span><span class="nx">insertItemResponse</span><span class="p">.</span><span class="nx">getItemId</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">setRevealDocumentJson</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">getVaccineCertFrameJSON</span><span class="p">())));</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;@context&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://www.w3.org/2018/credentials/v1&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;@explicit&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;issuer&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JObject</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
-<span class="kt">var</span><span class="w"> </span><span class="n">itemId</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&lt;item document id&gt;&quot;</span><span class="p">;</span><span class="w"></span>
-
-<span class="kt">var</span><span class="w"> </span><span class="n">signedDocument</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialService</span><span class="p">.</span><span class="n">CreateProof</span><span class="p">(</span><span class="n">itemId</span><span class="p">,</span><span class="w"> </span><span class="n">frame</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">proof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialService</span><span class="p">.</span><span class="n">CreateProofAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">DocumentJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">credentialJson</span><span class="p">.</span><span class="n">DocumentJson</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">RevealDocumentJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">frame</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="n">Formatting</span><span class="p">.</span><span class="n">None</span><span class="p">)</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1313,15 +1447,12 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">verifyProof</span><span class="p">(</span><span class="nx">proofDocument</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Verify result: &quot;</span> <span class="o">+</span> <span class="nx">isValid</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">verifyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">credentialService</span><span class="p">.</span><span class="nx">verifyProof</span><span class="p">(</span><span class="ow">new</span> <span class="nx">VerifyProofRequest</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setProofDocumentJson</span><span class="p">(</span><span class="nx">proof</span><span class="p">.</span><span class="nx">getProofDocumentJson</span><span class="p">()));</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">isValid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialService</span><span class="p">.</span><span class="n">VerifyProof</span><span class="p">(</span><span class="n">proofDocument</span><span class="p">);</span><span class="w"></span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Verify result: {isValid}&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">credentialService</span><span class="p">.</span><span class="n">VerifyProofAsync</span><span class="p">(</span><span class="k">new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">ProofDocumentJson</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">proof</span><span class="p">.</span><span class="n">ProofDocumentJson</span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
