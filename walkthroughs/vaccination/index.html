@@ -2277,7 +2277,7 @@ The certificate is in a JSON form, and for this example, we will use the followi
 <span class="kd">var</span> <span class="n">verifyProofResponse</span> <span class="o">=</span> <span class="n">credentialsService</span><span class="p">.</span><span class="na">verifyProof</span><span class="p">(</span><span class="n">VerifiableCredentials</span><span class="p">.</span><span class="na">VerifyProofRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">().</span><span class="na">setProofDocumentJson</span><span class="p">(</span><span class="n">credentialProof</span><span class="p">).</span><span class="na">build</span><span class="p">()).</span><span class="na">get</span><span class="p">();</span>
 <span class="kd">var</span> <span class="n">isValid</span> <span class="o">=</span> <span class="n">verifyProofResponse</span><span class="p">.</span><span class="na">getIsValid</span><span class="p">();</span>
 <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Verification result: &quot;</span> <span class="o">+</span> <span class="n">isValid</span><span class="p">);</span>
-<span class="n">Assertions</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">isValid</span><span class="p">);</span>
+<span class="k">assert</span> <span class="n">isValid</span><span class="p">;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
